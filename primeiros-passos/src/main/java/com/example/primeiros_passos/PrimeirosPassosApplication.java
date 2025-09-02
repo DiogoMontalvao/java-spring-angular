@@ -1,6 +1,6 @@
-package com.example.primeiros_passos.app;
+package com.example.primeiros_passos;
 
-import com.example.primeiros_passos.ViaCepResponse;
+import com.example.primeiros_passos.app.SistemaMensagem;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,12 +14,11 @@ public class PrimeirosPassosApplication {
     }
 
     @Bean
-    public CommandLineRunner run(ConversorJson conversor) throws Exception {
+    public CommandLineRunner run(SistemaMensagem sistema) throws Exception {
         return args -> {
-            String json = "{\"cep\": \"01001-000\", \"logradouro\": \"Praça da Sé\", \"localidade\": \"São Paulo\"}";
-
-            ViaCepResponse response = conversor.converter(json);
-            System.out.println("CEP: " + response);
+            sistema.confirmacaoCadastro();
+            sistema.mensagemBoasVindas();
+            sistema.confirmacaoCadastro();
         };
     }
 }
