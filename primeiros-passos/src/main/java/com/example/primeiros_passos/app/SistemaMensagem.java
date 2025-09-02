@@ -1,27 +1,28 @@
 package com.example.primeiros_passos.app;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
-public class SistemaMensagem {
+public class SistemaMensagem implements CommandLineRunner {
 
-    @Autowired
-    Remetente padrao;
+    @Value("${name:valorAlternativo}")
+    private String nome;
 
-    @Autowired
-    Remetente novo;
+    @Value("${email}")
+    private String email;
 
-    public void confirmacaoCadastro() {
-        System.out.println(padrao);
-        System.out.println("Cadastro realizado.");
-    }
+    @Value("${telefone}")
+    private List<Long> telefone;
 
-    public void mensagemBoasVindas() {
-        novo.setNome("Novo");
-        novo.setEmail("novoEmail@email.com");
-
-        System.out.println(novo);
-        System.out.println("Bem vindo!");
+    @Override
+    public void run(String... args) throws Exception {
+        System.out.printf(
+                "Mensagem enviada por: %s\nEmail: %s\nTelefones para contato: %s\n", nome, email, telefone
+        );
+        System.out.println("Seu cadastro foi aprovado!");
     }
 }
