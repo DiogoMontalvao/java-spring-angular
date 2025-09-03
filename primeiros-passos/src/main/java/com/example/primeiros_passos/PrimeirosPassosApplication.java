@@ -1,10 +1,7 @@
 package com.example.primeiros_passos;
 
-import com.example.primeiros_passos.app.SistemaMensagem;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class PrimeirosPassosApplication {
