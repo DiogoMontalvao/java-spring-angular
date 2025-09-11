@@ -19,13 +19,22 @@ public class StartApp implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        user.setName("Diogo Doir");
-        user.setUsername("Chatudor");
-        user.setPassword("123456");
+//        user.setName("Diogo Doir");
+//        user.setUsername("Chatudor");
+//        user.setPassword("123456");
 
-        repository.save(user);
+//        System.out.println(repository.save(user));
 
-        List<User> lista = repository.findAll();
-        System.out.println(lista);
+        for (User user : repository.findAll()) {
+            System.out.println(user);
+        }
+
+        for (User user : repository.findByNameContaining("Doir")){
+            System.out.println(user);
+        }
+
+        for (User user : repository.encontrarPorNome("Doir")) {
+            System.out.println(user);
+        }
     }
 }
