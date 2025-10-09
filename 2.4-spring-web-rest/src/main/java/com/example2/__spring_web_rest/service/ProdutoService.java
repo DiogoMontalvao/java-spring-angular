@@ -1,5 +1,6 @@
 package com.example2.__spring_web_rest.service;
 
+import com.example2.__spring_web_rest.exception.ProdutoNullException;
 import com.example2.__spring_web_rest.model.Produto;
 import com.example2.__spring_web_rest.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ public class ProdutoService {
     private ProdutoRepository repository;
 
     public Produto save(Produto produto) {
+        if (produto.getNome() == null || produto.getPreco() == null)
+            throw new ProdutoNullException();
+
         return repository.save(produto);
     }
 
