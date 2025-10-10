@@ -1,6 +1,7 @@
 package com.example2.__spring_web_rest.controller;
 
 import com.example2.__spring_web_rest.exception.ProdutoNullException;
+import com.example2.__spring_web_rest.exception.ProdutoPrecoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -17,6 +18,22 @@ public class ProdutoControllerAdvice extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> capturaNull() {
         Map<String, Object> body = new HashMap<>();
         body.put("message", "Verifique os campos de produto.");
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+    }
+
+    @ExceptionHandler(ProdutoPrecoException.class)
+    public ResponseEntity<Object> capturaPrecoNegativo() {
+        Map<String, Object> body = new HashMap<>();
+        body.put("message", "Verifique o preco do produto");
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Object> capturaErroGenerico() {
+        Map<String, Object> body = new HashMap<>();
+        body.put("message", "Erro genérico");
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
     }
